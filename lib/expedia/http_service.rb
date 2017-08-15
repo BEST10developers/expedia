@@ -4,7 +4,7 @@ require 'expedia/http_service/response'
 module Expedia
   module HTTPService
 
-    API_SERVER = 'api.eancdn.com'
+    API_SERVER = 'api.ean.com'
     # The development api server is not reliable. Often gives 400...
     # DEVELOPMENT_API_SERVER = 'dev.api.ean.com'
     DEVELOPMENT_API_SERVER = 'api.ean.com'
