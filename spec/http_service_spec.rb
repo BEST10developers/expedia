@@ -2,10 +2,6 @@ require 'spec_helper'
 
 describe "Expedia::HTTPService" do
 
-  it "has an DEVELOPMENT_API_SERVER Constant" do
-    Expedia::HTTPService.constants.should include(:DEVELOPMENT_API_SERVER)
-  end
-
   it "has an API_SERVER Constant" do
     Expedia::HTTPService.constants.should include(:API_SERVER)
   end
@@ -32,14 +28,6 @@ describe "Expedia::HTTPService" do
       Expedia::HTTPService.server( {:use_ssl => true }).should eql "https://#{Expedia::HTTPService::API_SERVER}"
     end
 
-    it "return DEVELOPMENT_API_SERVER server when cid is 55505" do
-      Expedia.stub(:cid).and_return(55505)
-      Expedia::HTTPService.server.should =~ Regexp.new(Expedia::HTTPService::DEVELOPMENT_API_SERVER)
-
-      Expedia.stub(:cid).and_return("55505")
-      Expedia::HTTPService.server.should =~ Regexp.new(Expedia::HTTPService::DEVELOPMENT_API_SERVER)
-    end
-
   end
 
   describe "signature and common_parameters" do
@@ -64,7 +52,7 @@ describe "Expedia::HTTPService" do
       Expedia::HTTPService.common_parameters.keys.should include(:sig)
       Expedia::HTTPService.common_parameters.keys.should include(:_type)
     end
-    
+
     it "checks to see if sig is removed from parameters" do
       Expedia.use_signature = false
       Expedia::HTTPService.common_parameters.keys.should_not include(:sig)
